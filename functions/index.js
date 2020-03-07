@@ -71,4 +71,13 @@ exports.registerUser = functions.https.onRequest((req, res) => {
     }, function() {
         res.sendStatus(500);
     })
-})
+});
+
+exports.getUser = functions.https.onRequest((req, res) => {
+    var userID = req.body.userID;
+    Users.getUser(userID).then(function(user) {
+        res.json(user);
+    }, function() {
+        res.sendStatus(500);
+    });
+});
