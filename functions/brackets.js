@@ -302,6 +302,21 @@ var Brackets = function() {
         });
     }
 
+    self.getMatch = function(bracketID, matchID) {
+        return new Promise(function(resolve, reject) {
+            db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/')
+                .doc(bracketID)
+                .collection('matches')
+                .doc(matchID)
+                .get()
+                .then((match) => {
+                    resolve(match);
+            }, function() {
+                reject();
+            });
+        });
+    }
+
     return self;
 }
 

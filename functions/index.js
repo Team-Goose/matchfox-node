@@ -81,3 +81,13 @@ exports.getUser = functions.https.onRequest((req, res) => {
         res.sendStatus(500);
     });
 });
+
+exports.getMatch = functions.https.onRequest((req, res) => {
+    var bracketID = req.body.bracketID;
+    var matchID = req.body.matchID;
+    Brackets.getMatch(bracketID, matchID).then((match) => {
+        res.json(match);
+    }, function() {
+        res.sendStatus(500);
+    });
+});
