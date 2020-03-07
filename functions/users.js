@@ -1,19 +1,9 @@
-const FirebaseUtils = require('./utils/firebaseUtils');
+var admin = require('firebase-admin');
+var UsernameGenerator = require('username-generator');
 
  var Users = function() {
      var self = {};
-
-     self.handler = {
-        getUser: function(req, res) {
-            const userID = req.body.userID;
-            self.getUser(userID).then(function(user) {
-                res.json(user);
-            }, function(statusCode) {
-                statusCode = statusCode || 500;
-                res.sendStatus(statusCode);
-            });
-        }
-     }
+     var db = admin.firestore();
 
      /**
      * Get user from user_id
@@ -22,11 +12,32 @@ const FirebaseUtils = require('./utils/firebaseUtils');
      */
     self.getUser = function(userID) {
         return new Promise(function(resolve, reject) {
-            FirebaseUtils.getSingleData("users", userID).then((data) => {
+            db.container('users').doc(userID).then((data) => {
                 resolve(data);
             }, function(err) {
                 console.error(err);
                 reject();
+            });
+        });
+    }
+
+    /**
+     * New user init
+     * @param {string} user_id
+     * @returns {Promise}
+     */
+    self.newUser = function(userID) {
+        return new Promise(function(resolve, reject) {
+            db.container('users').doc(userID).update({
+                icon: "#" + Math.floor(Math.random()*16777215).toString(16)
+            });
+        });
+    }
+
+    self.initUsername = function(userID) {
+        return new Promise(function(resolve, reject) {
+            db.container('user').doc(userID).update({
+                username: UsernameGenerator.generateUsername()
             });
         });
     }
