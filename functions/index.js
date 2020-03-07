@@ -16,6 +16,7 @@ const Users = require('./users');
 //  response.send("Hello from Firebase!");
 // });
 
+
 exports.getBracket = functions.https.onRequest((req, res) => {
     var bracketID =  req.body.bracketID;
     Brackets.getBracket(bracketID).then(function(bracket) {
@@ -33,12 +34,19 @@ exports.generateBracket = functions.https.onRequest((req, res) => {
     });
 });
 
-// exports.createUser = functions.firestore
-//     .document('users/{userToken}')
-//     .onCreate((snap, context) => {
-//         Users.newUser(snap.data().)
-//     });
+exports.createUser = functions.auth.user().onCreate((user) => {
+    Users.newUser(user.id);
+});
 
-exports.registerUser = functions.https.onRequest((req, res) => {
-    Brackets.registerUser
-})
+exports.setUsername = functions.https.onRequest((req, res) => {
+    var userID = req.body.userID;
+    Users.initUsername(userID).then(function() {
+        res.sendStatus(200);
+    }, function() {
+        res.sendStatus(500);
+    });
+});
+
+// exports.registerUser = functions.https.onRequest((req, res) => {
+//     Brackets.registerUser()
+// })
