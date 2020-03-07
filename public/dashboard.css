@@ -9,6 +9,20 @@ html {
   font-size: 50px;
 }
 
+#logout {
+  position: absolute;
+  margin-left: 95%;
+  width: 75px;
+  background-color: #163240;
+  color: white;
+  border-radius: 0;
+  border-color: #163240;
+}
+
+#logout:hover {
+  background-color: #d94e41;
+}
+
 html,
 body,
 .grid-container {
@@ -17,7 +31,10 @@ body,
 }
 
 .grid-container * {
-  border: 1px solid black;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
   position: relative;
 }
 
@@ -29,6 +46,7 @@ body,
 
 .grid-container {
   display: grid;
+  display: -ms-inline-grid;
   position: absolute;
   margin-left: 50%;
   left: -600px;
@@ -41,6 +59,9 @@ body,
   grid-row-end: 2;
   grid-column-start: 0;
   grid-column-end: 2;
+  border-right: 6px solid black;
+  border-top: 6px solid black;
+  border-left: 6px solid black;
 }
 
 #L2 {
@@ -48,6 +69,7 @@ body,
   grid-row-end: 3;
   grid-column-start: 0;
   grid-column-end: 2;
+  border-left: 6px solid black;
 }
 
 #L3 {
@@ -55,6 +77,7 @@ body,
   grid-row-end: 4;
   grid-column-start: 0;
   grid-column-end: 2;
+  border-left: 6px solid black;
 }
 
 #L4 {
@@ -62,6 +85,9 @@ body,
   grid-row-end: 5;
   grid-column-start: 0;
   grid-column-end: 2;
+  border-left: 6px solid black;
+  border-right: 6px solid black;
+  border-bottom: 6px solid black;
 }
 
 #L5 {
@@ -69,6 +95,7 @@ body,
   grid-row-end: 3;
   grid-column-start: 2;
   grid-column-end: 3;
+  border-top: 6px solid black;
 }
 
 #L6 {
@@ -76,6 +103,7 @@ body,
   grid-row-end: 4;
   grid-column-start: 2;
   grid-column-end: 3;
+  border-bottom: 6px solid black;
 }
 
 #LeftFinal {
@@ -83,11 +111,13 @@ body,
   grid-row-end: 4;
   grid-column-start: 3;
   grid-column-end: 4;
+  border-bottom: 6px solid black;
 }
 
 #RightFinal {
   grid-row-start: 3;
   grid-row-end: 4;
+  border-bottom: 6px solid black;
 }
 
 #Winner {
@@ -95,6 +125,7 @@ body,
   grid-row-end: 3;
   grid-column-start: 3;
   grid-column-end: 5;
+  border-top: 6px solid black;
 }
 
 #R1 {
@@ -102,6 +133,9 @@ body,
   grid-row-end: 2;
   grid-column-start: 6;
   grid-column-end: 7;
+  border-right: 6px solid black;
+  border-top: 6px solid black;
+  border-left: 6px solid black;
 }
 
 #R2 {
@@ -109,6 +143,7 @@ body,
   grid-row-end: 3;
   grid-column-start: 6;
   grid-column-end: 7;
+  border-right: 6px solid black;
 }
 
 #R3 {
@@ -116,6 +151,7 @@ body,
   grid-row-end: 4;
   grid-column-start: 6;
   grid-column-end: 7;
+  border-right: 6px solid black;
 }
 
 #R4 {
@@ -123,6 +159,9 @@ body,
   grid-row-end: 5;
   grid-column-start: 6;
   grid-column-end: 7;
+  border-right: 6px solid black;
+  border-left: 6px solid black;
+  border-bottom: 6px solid black;
 }
 
 #R5 {
@@ -130,6 +169,7 @@ body,
   grid-row-end: 3;
   grid-column-start: 5;
   grid-column-end: 6;
+  border-top: 6px solid black;
 }
 
 #R6 {
@@ -137,6 +177,7 @@ body,
   grid-row-end: 4;
   grid-column-start: 5;
   grid-column-end: 6;
+  border-bottom: 6px solid black;
 }
 
 .bracketSlot {

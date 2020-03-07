@@ -3,16 +3,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log in</title>
+    <link rel="stylesheet" href="login.css" />
   </head>
   <body>
-    <form id="loginForm">
-      <label for="user">Email</label>
-      <input type="text" id="username" name="user" />
-      <label for="pass">Enter password</label>
-      <input type="text" id="password" name="pass" />
-      <button id="loginBtn">Sign in</button>
-      <a href="./signup.html">Register Here</a>
-    </form>
+    <div id="grid-container">
+      <form id="loginForm">
+        <label for="user" class="labels">Email</label>
+        <input type="text" id="username" name="user" />
+        <label for="pass" class="labels">Enter password</label>
+        <input type="text" id="password" name="pass" />
+        <button id="loginBtn">Sign in</button>
+        <a href="./signup.html">Register Here</a>
+      </form>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>

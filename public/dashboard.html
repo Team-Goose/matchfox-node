@@ -7,28 +7,29 @@
     <link rel="stylesheet" href="dashboard.css" />
   </head>
   <body>
-    <h1 id="dash">Your Dashboard</h1>
+    <h1 id="dash">Bracket</h1>
     <button id="logout">Log Out</button>
     <div class="grid-container">
-      <div class="bracketSlot" id="L1">1L</div>
-      <div class="bracketSlot" id="L2">2L</div>
-      <div class="bracketSlot" id="L3">3L</div>
-      <div class="bracketSlot" id="L4">4L</div>
-      <div class="bracketSlot" id="L5">5L</div>
-      <div class="bracketSlot" id="L6">6L</div>
-      <div class="bracketSlot" id="LeftFinal">LW</div>
-      <div class="bracketSlot" id="RightFinal">RW</div>
-      <div class="bracketSlot" id="Winner">WW</div>
-      <div class="bracketSlot" id="R6">6R</div>
-      <div class="bracketSlot" id="R5">5R</div>
-      <div class="bracketSlot" id="R4">4R</div>
-      <div class="bracketSlot" id="R3">3R</div>
-      <div class="bracketSlot" id="R2">2R</div>
-      <div class="bracketSlot" id="R1">1R</div>
+      <div class="bracketSlot" id="L1"></div>
+      <div class="bracketSlot" id="L2"></div>
+      <div class="bracketSlot" id="L3"></div>
+      <div class="bracketSlot" id="L4"></div>
+      <div class="bracketSlot" id="R1"></div>
+      <div class="bracketSlot" id="R2"></div>
+      <div class="bracketSlot" id="R3"></div>
+      <div class="bracketSlot" id="R4"></div>
+      <div class="bracketSlot" id="L5"></div>
+      <div class="bracketSlot" id="L6"></div>
+      <div class="bracketSlot" id="LeftFinal"></div>
+      <div class="bracketSlot" id="RightFinal"></div>
+      <div class="bracketSlot" id="Winner"></div>
+      <div class="bracketSlot" id="R6"></div>
+      <div class="bracketSlot" id="R5"></div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-functions.js"></script>
     <script>
       // Your web app's Firebase configuration
       var firebaseConfig = {
@@ -45,6 +46,7 @@
       firebase.initializeApp(firebaseConfig);
 
       const auth = firebase.auth();
+      const func = firebase.functions();
     </script>
     <script src="dashboard.js"></script>
   </body>
