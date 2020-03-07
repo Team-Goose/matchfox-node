@@ -40,7 +40,7 @@ app.get('/api/user/get', Users.handler.getUser);
 app.use('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
-app.listen(3000, () => console.log(`Matchfox listening on port ${port}`));
+app.listen(3000, () => console.log("Matchfox listening on port 3000"));
 http.createServer(app).listen(8443);
 
 console.log("Spike.")

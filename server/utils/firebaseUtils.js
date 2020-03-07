@@ -9,7 +9,7 @@ var firebaseUtils = function() {
       databaseURL: "https://matchfoxdb.firebaseio.com"
     });
     
-    let db = admin.filestore();
+    let db = admin.firestore();
     
     /**
      * Gets single data object from firebase
