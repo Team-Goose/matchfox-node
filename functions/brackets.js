@@ -128,23 +128,16 @@ var Brackets = function() {
                     tempSize--;
                 }while(!pow2(tempSize));
                 xDim = tempSize;
+                ////////////////FOR PRESENTATION PURPOSES
+                if(xDim > 8) xDim = 8;///////////////////
+                /////////////////////////////////////////
                 findnext = xDim;
             }
 
             if(!empty){
 
                 for(var i = 0; i < xDim; i++){
-                    r1matches.push({
-                        // p1: "",
-                        // p2: "",
-                        members: ["", ""],
-                        score: [0, 0],
-                        nextMatch: -1,
-                        // p1score: 0,
-                        // p2score: 0,
-                        // outcome: 0,
-                        stage: 0
-                    });
+                    r1matches.push(JSON.parse('{"members":["", ""], "score":[0, 0], "nextMatch":-1, "stage":0}'));
                 }
 
                 while(temp2.length > 0 && counterY <= 1){
@@ -171,6 +164,14 @@ var Brackets = function() {
                     }
                 }
 
+                ////////////////////////////////////////////////////FOR PRESENTATION PURPOSES
+                if(counterY == 1 && counterX == 0 && temp2.length > 0){//////////////////////
+                    for(var i = 0; i < temp2.length; i++){///////////////////////////////////
+                        console.log(`${temp2[i].user_id} rejected from tournament\n`);///////
+                    }////////////////////////////////////////////////////////////////////////
+                }////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////
+
             }
             else return null;
 
@@ -189,17 +190,7 @@ var Brackets = function() {
             }
 
             for(var i = r1matches.length; i < (2*xDim) - 1; i++){
-                allmatches.push({
-                    // p1: "",
-                        // p2: "",
-                        members: ["", ""],
-                        score: [0, 0],
-                        nextMatch: 1,
-                        // p1score: 0,
-                        // p2score: 0,
-                        // outcome: 0,
-                        stage: 0
-                });
+                allmatches.push(JSON.parse('{"members":["", ""], "score":[0, 0], "nextMatch":1, "stage":0}'));
             }
 
             for(var i = r1matches.length; i < (2*xDim) - 1; i++){
