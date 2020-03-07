@@ -1,3 +1,5 @@
+var firebaseUtils = require('./utils/firebaseUtils');
+
 var GlobalBracketID = 100000000;
 
 var Brackets = function() {
