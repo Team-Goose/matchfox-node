@@ -1,4 +1,4 @@
-const firebaseUtils = require('./utils/firebaseUtils');
+const FirebaseUtils = require('./utils/firebaseUtils');
 
  var Users = function() {
      var self = {};
@@ -22,7 +22,7 @@ const firebaseUtils = require('./utils/firebaseUtils');
      */
     self.getUser = function(userID) {
         return new Promise(function(resolve, reject) {
-            firebaseUtils.getSingleData("users", userID).then((data) => {
+            FirebaseUtils.getSingleData("users", userID).then((data) => {
                 resolve(data);
             }, function(err) {
                 console.error(err);
