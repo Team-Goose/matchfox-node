@@ -1,4 +1,3 @@
-var firebaseUtils = require('./utils/firebaseUtils');
 
 var Brackets = function() {
     var self = {};
@@ -8,15 +7,6 @@ var Brackets = function() {
             const users = req.data.users;
             self.generateBracket(users).then(function(bracket) {
                 res.json(bracket);
-            }, function(statusCode) {
-                statusCode = statusCode || 500;
-                res.sendStatus(statusCode);
-            });
-        },
-        getUser: function(req, res) {
-            const userID = req.body.userID;
-            self.getUser(userID).then(function(user) {
-                res.json(user);
             }, function(statusCode) {
                 statusCode = statusCode || 500;
                 res.sendStatus(statusCode);
@@ -41,22 +31,6 @@ var Brackets = function() {
     
         // users[0].seed = 103;
         
-    }
-
-    /**
-     * Get user from user_id
-     * @param {string} user_id
-     * @returns {Promise} - user_id
-     */
-    self.getUser = function(userID) {
-        return new Promise(function(resolve, reject) {
-            firebaseUtils.getSingleData("users", userID).then((data) => {
-                resolve(data);
-            }, function(err) {
-                console.error(err);
-                reject();
-            });
-        });
     }
 
     return self;
