@@ -18,7 +18,7 @@ var firebaseUtils = function() {
      * @returns {Promise}
      */
     self.getSingleData = function(collection, document) {
-        return new Promise(function(resolvel, reject) {
+        return new Promise(function(resolve, reject) {
             var docRef = db.collection(collection).doc(document);
             docRef.get().then(doc => {
                 if(doc.exists) {
