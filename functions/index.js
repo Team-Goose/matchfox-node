@@ -23,20 +23,36 @@ exports.getBracket = functions.https.onRequest((req, res) => {
         res.json(bracket);
     }, function() {
         res.sendStatus(500);
-    })
+    });
 });
 
 exports.generateBracket = functions.https.onRequest((req, res) => {
-    Brackets.beginningGeneration().then(function(bracketID) {
+    Brackets.generateBracket().then(function(bracket) {
+        res.json(bracket);
+    }, function() {
+        res.sendStatus(500);
+    });
+});
+
+exports.createBracket = functions.https.onRequest((req, res) => {
+    Brackets.initBracket().then(function(bracketID) {
         res.json(bracketID);
     }, function() {
         res.sendStatus(500);
     });
 });
 
-exports.createUser = functions.auth.user().onCreate((user) => {
-    Users.newUser(user.id);
+exports.getBrackets = functions.https.onRequest((req, res) => {
+    Brackets.bracketList().then(function(brackets) {
+        res.json(brackets);
+    }, function() {
+        res.sendStatus(500);
+    });
 });
+
+// exports.createUser = functions.auth.user().onCreate((user) => {
+//     Users.newUser(user.id);
+// });
 
 exports.setUsername = functions.https.onRequest((req, res) => {
     var userID = req.body.userID;
@@ -47,6 +63,12 @@ exports.setUsername = functions.https.onRequest((req, res) => {
     });
 });
 
-// exports.registerUser = functions.https.onRequest((req, res) => {
-//     Brackets.registerUser()
-// })
+exports.registerUser = functions.https.onRequest((req, res) => {
+    var userID = req.body.userID;
+    var bracketID = req.body.bracketID;
+    Brackets.registerUser(bracketID, userID).then(function() {
+        res.sendStatus(200);
+    }, function() {
+        res.sendStatus(500);
+    })
+})

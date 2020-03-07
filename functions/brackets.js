@@ -8,6 +8,36 @@ var Brackets = function() {
 
     var self = {};
     var db = admin.firestore();
+
+    self.initBracket = function() {
+        return new Promise((resolve, reject) => {
+            var bracketID = uuidv1();
+            db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).then(function() {
+                resolve(bracketID);
+            }, function() {
+                reject();
+            });
+        });
+    }
+
+    /**
+     * Generate bracket
+     * @param {string} bracketID
+     * @returns {Promise}
+     */
+    self.generateBracket = function(bracketID) {
+        db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).get().then((bracket) => {
+            var users = bracket.users;
+            self.beginningGeneration(users).then((matches) => {
+                db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).set({matches: matches}).then(function() {
+                    resolve(matches);
+                }, function() {
+                    reject();
+                })
+            });
+        });
+    }
+
     /**
      * Generates a bracket from an array of user objects
      * @param {Object[]} users
@@ -193,13 +223,14 @@ var Brackets = function() {
                 }
             }
 
-            var bracketID = uuidv1();
+            // var bracketID = uuidv1();
 
-            db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).set({matches: allmatches}).then(function() {
-                resolve();
-            }, function() {
-                reject();
-            });
+            // db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).set({matches: allmatches}).then(function() {
+            //     resolve();
+            // }, function() {
+            //     reject();
+            // });
+            resolve(allmatches);
         });
     }
 
@@ -253,11 +284,23 @@ var Brackets = function() {
         });
     }
 
-    // /**
-    //  * Register user for a bracket
-    //  * @param user_id
-    //  * @param bracket_
-    //  */
+    /**
+     * Register user for a bracket
+     * @param user_id
+     * @param bracket_id
+     * @returns {Promise}
+     */
+    self.registerUser = function(bracketID, userID) {
+        return new Promise(function(resolve, reject) {
+            db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).set({
+                "users": [userID]
+            }, { merge: true }).then(function() {
+                resolve();
+            }, function() {
+                reject();
+            });
+        });
+    }
 
     return self;
 }
