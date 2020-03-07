@@ -26,14 +26,21 @@ var Brackets = function() {
      * @returns {Promise}
      */
     self.generateBracket = function(bracketID) {
-        db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).get().then((bracket) => {
-            var users = bracket.users;
-            self.beginningGeneration(users).then((matches) => {
-                db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).set({matches: matches}).then(function() {
-                    resolve(matches);
-                }, function() {
-                    reject();
-                })
+        return new Promise(function(resolve, reject) {
+            db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).get().then((bracket) => {
+                var users = bracket.users;
+                self.beginningGeneration(users).then((matches) => {
+                    var promises  = [];
+                    for(var i =0 ; i < matches.length; i++) {
+                        var promise = db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).collection("matches").doc(i).set(matches[i]);
+                        promises.push(promise);
+                    }
+                    Promise.all(promises).then(function() {
+                        resolve(matches);
+                    }, function() {
+                        reject();
+                    });
+                });
             });
         });
     }
@@ -316,6 +323,18 @@ var Brackets = function() {
             });
         });
     }
+
+    // self.reportMatch = function(bracketID, matchID, match) {
+    //     return new Promise(function(resolve, reject) {
+    //         db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/')
+    //             .doc(bracketID)
+    //             .update({
+    //                 locations: admin.firestore.FieldValue.arrayRemove({
+    //                     id: matchID
+    //                 })
+    //             })
+    //     })
+    // }
 
     return self;
 }

@@ -55,8 +55,9 @@ exports.getBrackets = functions.https.onRequest((req, res) => {
 // });
 
 exports.setUsername = functions.https.onRequest((req, res) => {
-    var userID = req.body.userID;
-    Users.initUsername(userID).then(function() {
+    var id = req.body.data.id;
+    var username = req.body.data.username;
+    Users.initUsername(id, username).then(function() {
         res.sendStatus(200);
     }, function() {
         res.sendStatus(500);
@@ -87,6 +88,17 @@ exports.getMatch = functions.https.onRequest((req, res) => {
     var matchID = req.body.matchID;
     Brackets.getMatch(bracketID, matchID).then((match) => {
         res.json(match);
+    }, function() {
+        res.sendStatus(500);
+    });
+});
+
+exports.reportMatch = functions.https.onRequest((req, res) => {
+    var bracketID = req.body.bracketID;
+    var matchID = req.body.matchID;
+    var match = req.body.match;
+    Brackets.reportMatch(bracketID, matchID).then(function() {
+        res.sendStatus(200);
     }, function() {
         res.sendStatus(500);
     });
