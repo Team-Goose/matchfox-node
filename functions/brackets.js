@@ -1,12 +1,18 @@
-var firebaseUtils = require('./utils/firebaseUtils');
-
-var GlobalBracketID = 100000000;
+const uuidv1 = require('uuid/v1');
+var admin = require('firebase-admin');
 
 var Brackets = function() {
     var self = {};
 
     self.handler = {};
 
+    var self = {};
+    var serviceAccount = require('./secrets.json');
+    admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+        databaseURL: "https://matchfoxdb.firebaseio.com"
+    });
+    var db = admin.firestore();
     /**
      * Generates a bracket from an array of user objects
      * @param {Object[]} users
@@ -14,7 +20,7 @@ var Brackets = function() {
      * @param {number} users[].seed
      * @returns {Object} bracket
      */
-    function beginningGeneration(users) {
+    self.beginningGeneration = function(users) {
         
         // var users = [
         //     {
@@ -87,7 +93,7 @@ var Brackets = function() {
         else{
             var tempSize = users.length;
             do {
-                tempsize--;
+                tempSize--;
             }while(!pow2(tempSize));
             xDim = tempSize;
             findnext = xDim;
@@ -188,8 +194,9 @@ var Brackets = function() {
             }
         }
 
-        allmatches.push(GlobalBracketID);
-        GlobalBracketID++;
+        var bracketID = uuidv1();
+
+        var setDoc = db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).set({matches: allmatches});
         
     }
 
