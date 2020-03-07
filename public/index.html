@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Welcome</title>
+  </head>
+  <body>
+    <h1>Welcome</h1>
+    <div id="login">
+      <a href="./login.html" id="login">Login</a>
+    </div>
+    <div id="register">
+      <a href="./signup.html" id="register">Sign up</a>
+    </div>
+  </body>
+
+  <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: 'AIzaSyDHmk3WrWG-yVP1b0BH0Lw6fIQXZ3vEDeU',
+      authDomain: 'matchfoxdb.firebaseapp.com',
+      databaseURL: 'https://matchfoxdb.firebaseio.com',
+      projectId: 'matchfoxdb',
+      storageBucket: 'matchfoxdb.appspot.com',
+      messagingSenderId: '874376032766',
+      appId: '1:874376032766:web:3b2a1472dc0cc12d5910af',
+      measurementId: 'G-8KGEJ570FV'
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+  </script>
+  <script src="index.js"></script>
+</html>
