@@ -1,19 +1,13 @@
-const FirebaseUtils = require('./utils/firebaseUtils');
+var admin = require('firebase-admin');
 
  var Users = function() {
      var self = {};
-
-     self.handler = {
-        getUser: function(req, res) {
-            const userID = req.body.userID;
-            self.getUser(userID).then(function(user) {
-                res.json(user);
-            }, function(statusCode) {
-                statusCode = statusCode || 500;
-                res.sendStatus(statusCode);
-            });
-        }
-     }
+     var serviceAccount = require('./secrets.json');
+     admin.initializeApp({
+         credential: admin.credential.cert(serviceAccount),
+         databaseURL: "https://matchfoxdb.firebaseio.com"
+     });
+     var db = admin.firestore();
 
      /**
      * Get user from user_id
@@ -22,7 +16,7 @@ const FirebaseUtils = require('./utils/firebaseUtils');
      */
     self.getUser = function(userID) {
         return new Promise(function(resolve, reject) {
-            FirebaseUtils.getSingleData("users", userID).then((data) => {
+            db.container('users').doc(userID).then((data) => {
                 resolve(data);
             }, function(err) {
                 console.error(err);
