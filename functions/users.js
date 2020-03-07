@@ -2,11 +2,6 @@ var admin = require('firebase-admin');
 
  var Users = function() {
      var self = {};
-     var serviceAccount = require('./secrets.json');
-     admin.initializeApp({
-         credential: admin.credential.cert(serviceAccount),
-         databaseURL: "https://matchfoxdb.firebaseio.com"
-     });
      var db = admin.firestore();
 
      /**

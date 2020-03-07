@@ -7,11 +7,6 @@ var Brackets = function() {
     self.handler = {};
 
     var self = {};
-    var serviceAccount = require('./secrets.json');
-    admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        databaseURL: "https://matchfoxdb.firebaseio.com"
-    });
     var db = admin.firestore();
     /**
      * Generates a bracket from an array of user objects
@@ -231,13 +226,6 @@ var Brackets = function() {
         return new Promise(function(resolve, reject) {
             db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).get().then(function(bracket) {
                 if(bracket.exists) {
-
-
-
-
-
-
-                    
                     resolve(bracket.data());
                 } else {
                     resolve({});
@@ -264,6 +252,12 @@ var Brackets = function() {
             });
         });
     }
+
+    // /**
+    //  * Register user for a bracket
+    //  * @param user_id
+    //  * @param bracket_
+    //  */
 
     return self;
 }
