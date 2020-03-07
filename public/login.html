@@ -1,0 +1,39 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log in</title>
+  </head>
+  <body>
+    <form id="loginForm">
+      <label for="user">Email</label>
+      <input type="text" id="username" name="user" />
+      <label for="pass">Enter password</label>
+      <input type="text" id="password" name="pass" />
+      <button id="loginBtn">Sign in</button>
+      <a href="./signup.html">Register Here</a>
+    </form>
+
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: 'AIzaSyDHmk3WrWG-yVP1b0BH0Lw6fIQXZ3vEDeU',
+        authDomain: 'matchfoxdb.firebaseapp.com',
+        databaseURL: 'https://matchfoxdb.firebaseio.com',
+        projectId: 'matchfoxdb',
+        storageBucket: 'matchfoxdb.appspot.com',
+        messagingSenderId: '874376032766',
+        appId: '1:874376032766:web:3b2a1472dc0cc12d5910af',
+        measurementId: 'G-8KGEJ570FV'
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const auth = firebase.auth();
+    </script>
+    <script src="login.js"></script>
+  </body>
+</html>

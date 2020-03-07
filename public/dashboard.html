@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <h1 id="dash">Your Dashboard</h1>
+    <button id="logout">Log Out</button>
+    <div class="grid-container">
+      <div class="bracketSlot" id="L1">1L</div>
+      <div class="bracketSlot" id="L2">2L</div>
+      <div class="bracketSlot" id="L3">3L</div>
+      <div class="bracketSlot" id="L4">4L</div>
+      <div class="bracketSlot" id="L5">5L</div>
+      <div class="bracketSlot" id="L6">6L</div>
+      <div class="bracketSlot" id="LeftFinal">LW</div>
+      <div class="bracketSlot" id="RightFinal">RW</div>
+      <div class="bracketSlot" id="Winner">WW</div>
+      <div class="bracketSlot" id="R6">6R</div>
+      <div class="bracketSlot" id="R5">5R</div>
+      <div class="bracketSlot" id="R4">4R</div>
+      <div class="bracketSlot" id="R3">3R</div>
+      <div class="bracketSlot" id="R2">2R</div>
+      <div class="bracketSlot" id="R1">1R</div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: 'AIzaSyDHmk3WrWG-yVP1b0BH0Lw6fIQXZ3vEDeU',
+        authDomain: 'matchfoxdb.firebaseapp.com',
+        databaseURL: 'https://matchfoxdb.firebaseio.com',
+        projectId: 'matchfoxdb',
+        storageBucket: 'matchfoxdb.appspot.com',
+        messagingSenderId: '874376032766',
+        appId: '1:874376032766:web:3b2a1472dc0cc12d5910af',
+        measurementId: 'G-8KGEJ570FV'
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const auth = firebase.auth();
+    </script>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

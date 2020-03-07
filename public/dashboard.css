@@ -1,0 +1,147 @@
+html {
+  background-color: #ffeecc;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+#dash {
+  text-align: center;
+  font-size: 50px;
+}
+
+html,
+body,
+.grid-container {
+  height: 100%;
+  margin: 0;
+}
+
+.grid-container * {
+  border: 1px solid black;
+  position: relative;
+}
+
+.grid-container *:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.grid-container {
+  display: grid;
+  position: absolute;
+  margin-left: 50%;
+  left: -600px;
+  grid-template-columns: 200px 200px 200px 200px 200px 200px;
+  grid-template-rows: 150px 150px 150px 150px;
+}
+
+#L1 {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 0;
+  grid-column-end: 2;
+}
+
+#L2 {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 0;
+  grid-column-end: 2;
+}
+
+#L3 {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 0;
+  grid-column-end: 2;
+}
+
+#L4 {
+  grid-row-start: 4;
+  grid-row-end: 5;
+  grid-column-start: 0;
+  grid-column-end: 2;
+}
+
+#L5 {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+#L6 {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+#LeftFinal {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+
+#RightFinal {
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#Winner {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+#R1 {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 6;
+  grid-column-end: 7;
+}
+
+#R2 {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 6;
+  grid-column-end: 7;
+}
+
+#R3 {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 6;
+  grid-column-end: 7;
+}
+
+#R4 {
+  grid-row-start: 4;
+  grid-row-end: 5;
+  grid-column-start: 6;
+  grid-column-end: 7;
+}
+
+#R5 {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 5;
+  grid-column-end: 6;
+}
+
+#R6 {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 5;
+  grid-column-end: 6;
+}
+
+.bracketSlot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}

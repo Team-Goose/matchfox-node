@@ -1,0 +1,31 @@
+html {
+  background-color: #1f4b59;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 75px;
+  color: #ffeecc;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#login {
+  text-align: center;
+  font-size: 50px;
+  color: #f26549;
+}
+
+#register {
+  text-align: center;
+  font-size: 50px;
+  color: #f26549;
+}
