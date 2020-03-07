@@ -103,23 +103,25 @@ var Brackets = function() {
 
                 for(var i = 0; i < xDim; i++){
                     r1matches.push({
-                        p1: "",
-                        p2: "",
-                        next: -1,
-                        p1score: 0,
-                        p2score: 0,
-                        outcome: 0,
+                        // p1: "",
+                        // p2: "",
+                        members: ["", ""],
+                        score: [0, 0],
+                        nextMatch: -1,
+                        // p1score: 0,
+                        // p2score: 0,
+                        // outcome: 0,
                         stage: 0
                     });
                 }
 
                 while(temp2.length > 0 && counterY <= 1){
                     if(counterY == 0){
-                        r1matches[counterX].p1 = temp2[temp2.length - 1].user_id;
-                        r1matches[counterX].next = findnext;
+                        r1matches[counterX].members[0] = temp2[temp2.length - 1].user_id;
+                        r1matches[counterX].nextMatch = findnext;
                         findnext++;
                     }
-                    else r1matches[counterX].p2 = temp2[temp2.length - 1].user_id;
+                    else r1matches[counterX].members[1] = temp2[temp2.length - 1].user_id;
                     temp2.pop();
 
                     if(!halfway) counterX++;
@@ -132,7 +134,7 @@ var Brackets = function() {
                 }
 
                 for(var i = 0; i < r1matches.length; i++){
-                    if(r1matches[i].p1 == "" || r1matches[i].p2 == ""){
+                    if(r1matches[i].members[0] == "" || r1matches[i].members[1] == ""){
                         byes.push(i);
                     }
                 }
@@ -156,22 +158,24 @@ var Brackets = function() {
 
             for(var i = r1matches.length; i < (2*xDim) - 1; i++){
                 allmatches.push({
-                    p1: "",
-                    p2: "",
-                    next: -1,
-                    p1score: 0,
-                    p2score: 0,
-                    outcome: 0,
-                    stage: stg
+                    // p1: "",
+                        // p2: "",
+                        members: ["", ""],
+                        score: [0, 0],
+                        nextMatch: 1,
+                        // p1score: 0,
+                        // p2score: 0,
+                        // outcome: 0,
+                        stage: 0
                 });
             }
 
             for(var i = r1matches.length; i < (2*xDim) - 1; i++){
                 if(byes.length > 0){
-                    var name = r1matches[byes.pop()].p1;
-                    if(name == "") name = bye.p2;
-                    else name = bye.p1;
-                    allmatches[i].p1 = name;
+                    var name = r1matches[byes.pop()].members[0];
+                    if(name == "") name = bye.members[1];
+                    else name = bye.members[0];
+                    allmatches[i].members[0] = name;
                 }
 
                 if(stcnt < stages){
@@ -183,9 +187,9 @@ var Brackets = function() {
                     allmatches[i].stage = stg;
                 }
 
-                if(i == (2*xDim) - 2) allmatches[i].next = -1;
+                if(i == (2*xDim) - 2) allmatches[i].nextMatch = -1;
                 else{
-                    allmatches[i].next = findnext;
+                    allmatches[i].nextMatch = findnext;
                     if(innext){
                         findnext++;
                         innext = false;
