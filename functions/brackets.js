@@ -244,6 +244,22 @@ var Brackets = function() {
             });
         });
     }
+    
+    self.bracketList = function(){
+        return new Promise(function(resolve, reject){
+            var bList = [];
+            db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').get().then(snapshot => {
+                snapshot.forEach(doc => {
+                    bList.push(doc.id);
+                });
+            }).catch(err => {
+                console.error(err);
+                reject();
+            }).finally(function(){
+                resolve(bList);
+            });
+        });
+    }
 
     return self;
 }
