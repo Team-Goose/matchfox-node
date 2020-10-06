@@ -1,6 +1,8 @@
 const uuidv1 = require('uuid/v1');
 var admin = require('firebase-admin');
 
+const utils = require('./utils');
+
 var Brackets = function() {
     var self = {};
 
@@ -126,7 +128,7 @@ var Brackets = function() {
                 var tempSize = users.length;
                 do {
                     tempSize--;
-                }while(!pow2(tempSize));
+                }while(!utils.pow2(tempSize));
                 xDim = tempSize;
                 ////////////////FOR PRESENTATION PURPOSES
                 if(xDim > 8) xDim = 8;///////////////////
@@ -232,20 +234,6 @@ var Brackets = function() {
         });
     }
 
-    function pow2(n){
-
-        if(n % 2 == 1) return false;
-
-        while(n % 2 == 0){
-            n = n / 2;
-        }
-
-        if(n == 1) return true;
-
-        return false;
-
-    }
-
     /**
      * Get bracket
      * @param {string} bracketID
@@ -266,6 +254,10 @@ var Brackets = function() {
         });
     }
     
+    /**
+     * Retrieve brackets from database
+     * @returns {Promise}
+     */
     self.bracketList = function(){
         return new Promise(function(resolve, reject){
             var bList = [];
@@ -284,8 +276,8 @@ var Brackets = function() {
 
     /**
      * Register user for a bracket
-     * @param user_id
-     * @param bracket_id
+     * @param {string} user_id
+     * @param {string} bracket_id
      * @returns {Promise}
      */
     self.registerUser = function(bracketID, userID) {
@@ -300,6 +292,12 @@ var Brackets = function() {
         });
     }
 
+    /**
+     * Retrieves specific match from database
+     * @param {string} bracketID - ID of bracket
+     * @param {string} matchID - ID of match within bracket
+     * @returns {Promise}
+     */
     self.getMatch = function(bracketID, matchID) {
         return new Promise(function(resolve, reject) {
             db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/')
@@ -315,6 +313,12 @@ var Brackets = function() {
         });
     }
 
+    /**
+     * Updates details of a match
+     * @param {string} bracketID - ID of bracket
+     * @param {string} matchID - ID of match
+     * @returns {Promise}
+     */
     // self.reportMatch = function(bracketID, matchID, match) {
     //     return new Promise(function(resolve, reject) {
     //         db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/')
