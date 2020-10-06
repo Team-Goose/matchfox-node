@@ -1,6 +1,8 @@
 const uuidv1 = require('uuid/v1');
 var admin = require('firebase-admin');
 
+const utils = require('./utils');
+
 var Brackets = function() {
     var self = {};
 
@@ -126,7 +128,7 @@ var Brackets = function() {
                 var tempSize = users.length;
                 do {
                     tempSize--;
-                }while(!pow2(tempSize));
+                }while(!utils.pow2(tempSize));
                 xDim = tempSize;
                 ////////////////FOR PRESENTATION PURPOSES
                 if(xDim > 8) xDim = 8;///////////////////
@@ -230,20 +232,6 @@ var Brackets = function() {
             // });
             resolve(allmatches);
         });
-    }
-
-    function pow2(n){
-
-        if(n % 2 == 1) return false;
-
-        while(n % 2 == 0){
-            n = n / 2;
-        }
-
-        if(n == 1) return true;
-
-        return false;
-
     }
 
     /**
