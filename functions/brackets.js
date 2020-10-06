@@ -254,6 +254,10 @@ var Brackets = function() {
         });
     }
     
+    /**
+     * Retrieve brackets from database
+     * @returns {Promise}
+     */
     self.bracketList = function(){
         return new Promise(function(resolve, reject){
             var bList = [];
@@ -272,8 +276,8 @@ var Brackets = function() {
 
     /**
      * Register user for a bracket
-     * @param user_id
-     * @param bracket_id
+     * @param {string} user_id
+     * @param {string} bracket_id
      * @returns {Promise}
      */
     self.registerUser = function(bracketID, userID) {
@@ -288,6 +292,12 @@ var Brackets = function() {
         });
     }
 
+    /**
+     * Retrieves specific match from database
+     * @param {string} bracketID - ID of bracket
+     * @param {string} matchID - ID of match within bracket
+     * @returns {Promise}
+     */
     self.getMatch = function(bracketID, matchID) {
         return new Promise(function(resolve, reject) {
             db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/')
@@ -303,6 +313,12 @@ var Brackets = function() {
         });
     }
 
+    /**
+     * Updates details of a match
+     * @param {string} bracketID - ID of bracket
+     * @param {string} matchID - ID of match
+     * @returns {Promise}
+     */
     // self.reportMatch = function(bracketID, matchID, match) {
     //     return new Promise(function(resolve, reject) {
     //         db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/')
