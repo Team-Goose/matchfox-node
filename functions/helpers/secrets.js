@@ -3,7 +3,8 @@ const secFil = require("../secrets.json");
 
 var Secrets = function() {
     this.get = function(key) {
-        return secFil[key];
+    this.decrypt = function(secret, key) {
+        return CryptoJS.AES.decrypt(secret, key);
     }
 }
 
