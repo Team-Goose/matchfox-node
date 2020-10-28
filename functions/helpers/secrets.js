@@ -1,12 +1,13 @@
 var CryptoJS = require('crypto-js');
-var argv = require('minimist')(process.argv.slice(2));
 
-const secFil = require("../secrets.json");
 
-var Secrets = function() {
+var Secrets = function(argv) {
+    const secFil = require("../secrets.json");
+    const crypt = argv.crypt;
+
     this.get = function(key) {
         var encrypted = secFil[key];
-        return this.decrypt(encrypted, argv.crypt);
+        return this.decrypt(encrypted, crypt);
     }
 
     this.encrypt = function(secret, key) {
