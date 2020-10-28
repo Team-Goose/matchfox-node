@@ -1,3 +1,4 @@
+var CryptoJS = require('crypto-js');
 const secFil = require("../secrets.json");
 
 var Secrets = function() {
