@@ -2,6 +2,7 @@ const uuidv1 = require('uuid/v1');
 var admin = require('firebase-admin');
 
 const utils = require('./utils');
+const Secrets = require('./secrets');
 
 var Brackets = function() {
     var self = {};
@@ -11,10 +12,12 @@ var Brackets = function() {
     var self = {};
     var db = admin.firestore();
 
+    const secrets = new Secrets();
+
     self.initBracket = function() {
         return new Promise((resolve, reject) => {
             var bracketID = uuidv1();
-            db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).then(function() {
+            db.collection(secrets.get("bracket_collection")).doc(bracketID).then(function() {
                 resolve(bracketID);
             }, function() {
                 reject();
@@ -29,12 +32,12 @@ var Brackets = function() {
      */
     self.generateBracket = function(bracketID) {
         return new Promise(function(resolve, reject) {
-            db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).get().then((bracket) => {
+            db.collection(secrets.get("bracket_collection")).doc(bracketID).get().then((bracket) => {
                 var users = bracket.users;
                 self.beginningGeneration(users).then((matches) => {
                     var promises  = [];
                     for(var i =0 ; i < matches.length; i++) {
-                        var promise = db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).collection("matches").doc(i).set(matches[i]);
+                        var promise = db.collection(secrets.get("bracket_collection")).doc(bracketID).collection("matches").doc(i).set(matches[i]);
                         promises.push(promise);
                     }
                     Promise.all(promises).then(function() {
@@ -225,7 +228,7 @@ var Brackets = function() {
 
             // var bracketID = uuidv1();
 
-            // db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).set({matches: allmatches}).then(function() {
+            // db.collection(secrets.get("bracket_collection")).doc(bracketID).set({matches: allmatches}).then(function() {
             //     resolve();
             // }, function() {
             //     reject();
@@ -241,7 +244,7 @@ var Brackets = function() {
      */
     self.getBracket = function(bracketID) {
         return new Promise(function(resolve, reject) {
-            db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).get().then(function(bracket) {
+            db.collection(secrets.get("bracket_collection")).doc(bracketID).get().then(function(bracket) {
                 if(bracket.exists) {
                     resolve(bracket.data());
                 } else {
@@ -261,7 +264,7 @@ var Brackets = function() {
     self.bracketList = function(){
         return new Promise(function(resolve, reject){
             var bList = [];
-            db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').get().then(snapshot => {
+            db.collection(secrets.get("bracket_collection")).get().then(snapshot => {
                 snapshot.forEach(doc => {
                     bList.push(doc.id);
                 });
@@ -282,7 +285,7 @@ var Brackets = function() {
      */
     self.registerUser = function(bracketID, userID) {
         return new Promise(function(resolve, reject) {
-            db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/').doc(bracketID).set({
+            db.collection(secrets.get("bracket_collection")).doc(bracketID).set({
                 "users": [userID]
             }, { merge: true }).then(function() {
                 resolve();
@@ -300,7 +303,7 @@ var Brackets = function() {
      */
     self.getMatch = function(bracketID, matchID) {
         return new Promise(function(resolve, reject) {
-            db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/')
+            db.collection(secrets.get("bracket_collection"))
                 .doc(bracketID)
                 .collection('matches')
                 .doc(matchID)
@@ -321,7 +324,7 @@ var Brackets = function() {
      */
     // self.reportMatch = function(bracketID, matchID, match) {
     //     return new Promise(function(resolve, reject) {
-    //         db.collection('groups/oi2l5XhwY8LoxXeT5fHO/brackets/')
+    //         db.collection(secrets.get("bracket_collection"))
     //             .doc(bracketID)
     //             .update({
     //                 locations: admin.firestore.FieldValue.arrayRemove({
